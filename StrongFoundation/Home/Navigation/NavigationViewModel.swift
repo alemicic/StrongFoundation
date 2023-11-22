@@ -29,9 +29,19 @@ enum ScreenNavigation: Hashable {
 }
 
 class NavigationVM: ObservableObject {
-//    var subscription = Set<AnyCancellable>()
+    var subscription = Set<AnyCancellable>()
     
-    @Published var navigationPath: [ScreenNavigation] = []
+    @Published var homeNavigationPath: [ScreenNavigation] = []
+    @Published var channelsNavigationPath: [ScreenNavigation] = []
+    @Published var settingsNavigationPath: [ScreenNavigation] = []
+    
+    init(homeNavigationPath: [ScreenNavigation] = [],
+         channelsNavigationPath: [ScreenNavigation] = [],
+         settingsNavigationPath: [ScreenNavigation] = []) {
+        self.homeNavigationPath = homeNavigationPath
+        self.channelsNavigationPath = channelsNavigationPath
+        self.settingsNavigationPath = settingsNavigationPath
+    }
     
 //    func makeScreen1PhoneVM() -> Screen1PhoneVM {
 //        let vm = Screen1PhoneVM(phoneNumber: model.phoneNumber)
@@ -40,23 +50,52 @@ class NavigationVM: ObservableObject {
 //            .store(in: &subscription)
 //        return vm
 //    }
-//    
-//    TODO: prekrsti u push
+//
 //    func didComplete1(vm: Screen1PhoneVM) {
 //        // Additional logic inc. updating model
 //        model.phoneNumber = vm.phoneNumber
 //        navigationPath.append(.screen2(vm: makeScreen2VerificationVM()))
 //    }
     
-    func push(screen: ScreenNavigation) {
-        navigationPath.append(screen)
+    func openAssetDetailsOnHome(assetModel: AssetModel) {
+        homeNavigationPath.append(.assetDetail(vm: makeAssetDetailsVM(assetModel: assetModel)))
+    }
+      
+    func popHomeToRoot() {
+        homeNavigationPath = []
     }
     
-    func popToRoot() {
-        navigationPath = []
+    func popChannelsToRoot() {
+        channelsNavigationPath = []
     }
     
-    func pop() {
-        navigationPath.removeLast()
+    func popSettingsToRoot() {
+        settingsNavigationPath = []
+    }
+    
+    func popHome() {
+        homeNavigationPath.removeLast()
+    }
+    
+    func popChannels() {
+        channelsNavigationPath.removeLast()
+    }
+    
+    func popSettings() {
+        settingsNavigationPath.removeLast()
+    }
+}
+
+extension NavigationVM {
+    func makeHomeScreenVM() -> HomeScreenViewModel {
+        let vm = HomeScreenViewModel(items: [])
+        vm.didComplete
+            .sink(receiveValue: openAssetDetailsOnHome)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeAssetDetailsVM(assetModel: AssetModel) -> AssetDetailVM {
+        AssetDetailVM(assetModel: assetModel)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct HomeScreen: View {
-        @Binding var path: [ScreenNavigation]
+//        @Binding var path: [ScreenNavigation]
 //    @Environment(\.managedObjectContext) private var viewContext
 
     ///TODO istrazi sta ovo radi
@@ -20,49 +20,46 @@ struct HomeScreen: View {
     
 //    private var items: FetchedResults<Item>
     
-    @StateObject var vm = HomeViewModel(items: [])
-    @StateObject var navigationVM = NavigationVM()
+    @StateObject var vm: HomeScreenViewModel
+    @StateObject var navigationVM: NavigationVM
+    
+    init(vm: HomeScreenViewModel,
+         navigationVM: StateObject<NavigationVM>) {
+        _vm = StateObject(wrappedValue: vm)
+        _navigationVM = navigationVM
+    }
 
     var body: some View {
-        NavigationStack(path: $path) {
-            TextField(StringConstants.tfTitlePlaceholder, text: $vm.title)
-                .padding(.horizontal)
-            // TODO: make custom textFieldStyle
-                .textFieldStyle(.roundedBorder)
-                .labelStyle(.titleOnly)
-            TextField(StringConstants.tfDescriptionPlaceholder, text: $vm.description)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal)
-            List {
-                ForEach(vm.items) { item in
-                    AssetListItemView(title: item.title,
-                                      description: item.description,
-                                      image: item.imageStr)
-                        .listRowInsets(EdgeInsets())
-                        .onTapGesture {
-                            print("@@@@@@")
-                            navigationVM.push(screen: ScreenNavigation.assetDetail(vm: AssetDetailVM(assetModel: item)))
-                        }
-                        
+        TextField(StringConstants.tfTitlePlaceholder, text: $vm.title)
+            .padding(.horizontal)
+        // TODO: make custom textFieldStyle
+            .textFieldStyle(.roundedBorder)
+            .labelStyle(.titleOnly)
+        TextField(StringConstants.tfDescriptionPlaceholder, text: $vm.description)
+            .textFieldStyle(.roundedBorder)
+            .padding(.horizontal)
+        List {
+            ForEach(vm.items) { item in
+                AssetListItemView(title: item.title,
+                                  description: item.description,
+                                  image: item.imageStr)
+                .listRowInsets(EdgeInsets())
+                .onTapGesture {
+                    vm.didTapAssetDetails(assetModel: item)
                 }
-                .onDelete(perform: deleteItems)
-                .clipped()
+                
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+            .onDelete(perform: deleteItems)
+            .clipped()
         }
-        .navigationDestination(for: ScreenNavigation.self) { screen in
-            switch screen {
-                case .assetDetail(vm: let vm):
-                    AssetDetailView(vm: vm)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            ToolbarItem {
+                Button(action: addItem) {
+                    Label("Add Item", systemImage: "plus")
+                }
             }
         }
     }
@@ -110,6 +107,7 @@ private let itemFormatter: DateFormatter = {
 }()
 
 #Preview {
-    HomeScreen(path: RootTabView().$homeNavigationStack)
+    HomeScreen(vm: HomeScreenViewModel(items: []),
+               navigationVM: StateObject(wrappedValue: RootTabView().navigationVM))
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

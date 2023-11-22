@@ -17,22 +17,34 @@ import SwiftUI
 
 struct RootTabView: View {
     enum Tab {
-        case home, settings
+        case home, channels, settings
     }
     
     @State private var selectedTab: Tab = .home
-    @State public var homeNavigationStack: [ScreenNavigation] = []
-    @State public var settingsNavigationStack: [ScreenNavigation] = []
+    @StateObject public var navigationVM: NavigationVM
     
+    init() {
+        self.selectedTab = .home
+        _navigationVM = StateObject(wrappedValue: NavigationVM())
+    }
     var body: some View {
         
         TabView(selection: tabSelection()) {
-            HomeScreen(path: $homeNavigationStack)
-                .tabItem {
-                    Label("Home",
-                          systemImage: "house.fill")
+            NavigationStack(path: $navigationVM.homeNavigationPath) {
+                HomeScreen(vm: navigationVM.makeHomeScreenVM(),
+                           navigationVM: _navigationVM)
+                .navigationDestination(for: ScreenNavigation.self) { screen in
+                    switch screen {
+                        case .assetDetail(vm: let vm):
+                            AssetDetailView(vm: vm)
+                    }
                 }
-                .tag(Tab.home)
+            }
+            .tabItem {
+                Label("Home",
+                      systemImage: "house.fill")
+            }
+            .tag(Tab.home)
             
             Text("Tab 2")
                 .tabItem {
@@ -48,11 +60,28 @@ struct RootTabView: View {
             selectedTab
         } set: { tappedTab in
             if tappedTab == selectedTab {
-                if homeNavigationStack.isEmpty {
-                    //User already on home view, scroll to top
-                } else {
-                    //Pop to root view by clearing the stack
-                    homeNavigationStack = []
+                switch tappedTab {
+                    case .home:
+                        if navigationVM.homeNavigationPath.isEmpty {
+                            //User already on home view, scroll to top
+                        } else {
+                            //Pop to root view by clearing the stack
+                            navigationVM.popHomeToRoot()
+                        }
+                    case .channels:
+                        if navigationVM.channelsNavigationPath.isEmpty {
+                            //User already on home view, scroll to top
+                        } else {
+                            //Pop to root view by clearing the stack
+                            navigationVM.popChannelsToRoot()
+                        }
+                    case .settings:
+                        if navigationVM.settingsNavigationPath.isEmpty {
+                            //User already on home view, scroll to top
+                        } else {
+                            //Pop to root view by clearing the stack
+                            navigationVM.popSettingsToRoot()
+                        }
                 }
             }
             selectedTab = tappedTab

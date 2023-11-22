@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
-class HomeViewModel: ObservableObject {
+class HomeScreenViewModel: ObservableObject {
     // MARK: Bindings
     @Published var items: [AssetModel]
     @Published var title = ""
@@ -19,6 +21,13 @@ class HomeViewModel: ObservableObject {
         idValue += 1
         return idValue - 1
     }
+    
+    let didComplete = PassthroughSubject<AssetModel, Never>()
+    
+    func didTapAssetDetails(assetModel: AssetModel) {
+        didComplete.send(assetModel)
+    }
+    
     // MARK: Init
     init(items: [AssetModel]) {
         self.items = items

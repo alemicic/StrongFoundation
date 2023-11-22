@@ -11,10 +11,13 @@ import SwiftUI
 struct StrongFoundationApp: App {
     let persistenceController = PersistenceController.shared
 
+//    static var navigationVM = NavigationVM(path.wrappedValue)
     var body: some Scene {
         WindowGroup {
-            HomeScreen(path: RootTabView().$homeNavigationStack)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            RootTabView()
+//            HomeScreen(path: RootTabView().$homeNavigationStack,
+//                       vm: NavigationVM([]).makeHomeScreenVM())
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
