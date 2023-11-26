@@ -13,7 +13,6 @@ struct TitleDescriptionView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            // TODO: expand text as much as possible
             Text(title)
                 .font(.titleSemibold20)
                 .lineLimit(2)

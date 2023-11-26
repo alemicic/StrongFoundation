@@ -43,20 +43,6 @@ class NavigationVM: ObservableObject {
         self.settingsNavigationPath = settingsNavigationPath
     }
     
-//    func makeScreen1PhoneVM() -> Screen1PhoneVM {
-//        let vm = Screen1PhoneVM(phoneNumber: model.phoneNumber)
-//        vm.didComplete
-//            .sink(receiveValue: didComplete1)
-//            .store(in: &subscription)
-//        return vm
-//    }
-//
-//    func didComplete1(vm: Screen1PhoneVM) {
-//        // Additional logic inc. updating model
-//        model.phoneNumber = vm.phoneNumber
-//        navigationPath.append(.screen2(vm: makeScreen2VerificationVM()))
-//    }
-    
     func openAssetDetailsOnHome(assetModel: AssetModel) {
         homeNavigationPath.append(.assetDetail(vm: makeAssetDetailsVM(assetModel: assetModel)))
     }
