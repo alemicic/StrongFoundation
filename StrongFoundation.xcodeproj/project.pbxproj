@@ -33,7 +33,6 @@
 		A8FA39C42B13CB53008609F9 /* AssetsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C32B13CB53008609F9 /* AssetsEndpoint.swift */; };
 		A8FA39C62B13CF15008609F9 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C52B13CF15008609F9 /* Client.swift */; };
 		A8FA39C92B13E19C008609F9 /* AssetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C82B13E19C008609F9 /* AssetService.swift */; };
-		A8FA39CB2B13E1B6008609F9 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39CA2B13E1B6008609F9 /* Asset.swift */; };
 		A8FA39CD2B13E3FF008609F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39CC2B13E3FF008609F9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +83,6 @@
 		A8FA39C32B13CB53008609F9 /* AssetsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsEndpoint.swift; sourceTree = "<group>"; };
 		A8FA39C52B13CF15008609F9 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A8FA39C82B13E19C008609F9 /* AssetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetService.swift; sourceTree = "<group>"; };
-		A8FA39CA2B13E1B6008609F9 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		A8FA39CC2B13E3FF008609F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +151,7 @@
 		A89562E02B00C99F004C015F /* StrongFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				A8FA39CF2B167778008609F9 /* Mapper */,
 				A8FA39BE2B13C9D9008609F9 /* Client */,
 				A8FA39BA2B13773A008609F9 /* Screens */,
 				A89563182B00DE67004C015F /* UIModels */,
@@ -223,7 +222,6 @@
 		A89563182B00DE67004C015F /* UIModels */ = {
 			isa = PBXGroup;
 			children = (
-				A89563192B00DEA6004C015F /* AssetModel.swift */,
 			);
 			path = UIModels;
 			sourceTree = "<group>";
@@ -296,7 +294,7 @@
 		A8FA39BF2B13CA26008609F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A8FA39CA2B13E1B6008609F9 /* Asset.swift */,
+				A89563192B00DEA6004C015F /* AssetModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +314,13 @@
 				A8FA39C82B13E19C008609F9 /* AssetService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		A8FA39CF2B167778008609F9 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,7 +468,6 @@
 				A89562E42B00C99F004C015F /* HomeScreen.swift in Sources */,
 				A89563112B00CA86004C015F /* HomeScreenViewModel.swift in Sources */,
 				A89562E22B00C99F004C015F /* StrongFoundationApp.swift in Sources */,
-				A8FA39CB2B13E1B6008609F9 /* Asset.swift in Sources */,
 				A8FA39BD2B1378EF008609F9 /* AssetHorizontalItemView.swift in Sources */,
 				A895632C2B02C3F6004C015F /* RootTabView.swift in Sources */,
 				A89563262B014C78004C015F /* Identifier.swift in Sources */,

@@ -30,44 +30,101 @@ struct HomeScreen: View {
     }
 
     var body: some View {
-        TextField(StringConstants.tfTitlePlaceholder, text: $vm.title)
-            .padding(.horizontal)
-        // TODO: make custom textFieldStyle
-            .textFieldStyle(.roundedBorder)
-            .labelStyle(.titleOnly)
-        TextField(StringConstants.tfDescriptionPlaceholder, text: $vm.description)
-            .textFieldStyle(.roundedBorder)
-            .padding(.horizontal)
-        List {
-            ForEach(vm.items) { item in
-                AssetListItemView(title: item.title,
-                                  description: item.description,
-                                  image: item.imageStr)
-                .listRowInsets(EdgeInsets())
-                .onTapGesture {
-                    vm.didTapAssetDetails(assetModel: item)
+        VStack(alignment: .leading) {
+            TextField(StringConstants.tfTitlePlaceholder, text: $vm.title)
+                .padding(.horizontal)
+            // TODO: make custom textFieldStyle
+                .textFieldStyle(.roundedBorder)
+                .labelStyle(.titleOnly)
+            TextField(StringConstants.tfDescriptionPlaceholder, text: $vm.description)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+            List {
+                ForEach(vm.items) { item in
+                    AssetListItemView(title: item.title,
+                                      description: item.description,
+                                      image: item.imageStr)
+                    .listRowInsets(EdgeInsets())
+                    .onTapGesture {
+                        vm.didTapAssetDetails(assetModel: item)
+                    }
                 }
-                
+                .onDelete(perform: deleteItems)
+                .clipped()
             }
-            .onDelete(perform: deleteItems)
-            .clipped()
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
-            ToolbarItem {
-                Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
+            .background(.thinMaterial)
+            .scrollContentBackground(.hidden)
+            .listStyle(.insetGrouped)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button(action: addItem) {
+                        Label("Add Item", systemImage: "plus")
+                    }
                 }
             }
+            Section {
+                Text("Prva lista")
+            }
+            .padding(.horizontal16)
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(vm.items) { item in
+                        AssetHorizontalItemView(title: item.title,
+                                                image: item.imageStr)
+                    }
+                    .background(.white)
+                    .listStyle(.insetGrouped)
+                }
+            }
+            .background(.thinMaterial)
+            .padding(.horizontal16)
+            .scrollIndicators(.hidden)
+            
+            Section {
+                Text("Druga lista")
+            }
+            .padding(.horizontal16)
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(vm.items) { item in
+                        AssetHorizontalItemView(title: item.title,
+                                                image: item.imageStr)
+                    }
+                    .background(.white)
+                    .listStyle(.insetGrouped)
+                }
+            }
+            .background(.thinMaterial)
+            .padding(.horizontal16)
+            .scrollIndicators(.hidden)
+            
+            Section {
+                Text("Treca lista")
+            }
+            .padding(.horizontal16)
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(vm.items) { item in
+                        AssetHorizontalItemView(title: item.title,
+                                                image: item.imageStr)
+                    }
+                    .background(.white)
+                    .listStyle(.insetGrouped)
+                }
+            }
+            .background(.thinMaterial)
+            .padding(.horizontal16)
+            .scrollIndicators(.hidden)
         }
     }
 
     private func addItem() {
         withAnimation {
             // MARK: Check if empty, show toast, color fields red and shake fields
-            let newItem = AssetModel(id: vm.autoIncrement, title: vm.title, description: vm.description, imageStr: "lotr64")
+            let newItem = AssetModel(id: vm.autoIncrement, imageStr: "lotr64", title: vm.title, description: vm.description)
             vm.items.append(newItem)
             vm.resetValues()
 

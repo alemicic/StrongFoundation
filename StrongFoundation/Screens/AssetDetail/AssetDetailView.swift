@@ -23,5 +23,5 @@ struct AssetDetailView: View {
 }
 
 #Preview {
-    AssetDetailView(vm: AssetDetailVM(assetModel: AssetModel(id: 0, title: "titlerino long", description: "description long", imageStr: "lotr64")))
+    AssetDetailView(vm: AssetDetailVM(assetModel: AssetModel(id: 0, imageStr: "lotr64", title: "titlerino long", description: "description long")))
 }

@@ -1,30 +1,40 @@
 //
-//  Asset.swift
+//  HomeModel.swift
 //  StrongFoundation
 //
-//  Created by Aleksandar Micic on 26.11.23..
+//  Created by Aleksandar Micic on 12.11.23..
 //
 
 import Foundation
 
-struct Asset: Model {
+struct AssetModel: Model {
     enum Keys: String, CodingKey {
         case id = "id"
-        case image = "image"
+        case imageStr = "image"
         case title = "title"
         case description = "description"
     }
     
     public let id: Int
-    public let image: String
+    public let imageStr: String
     public let title: String
     public let description: String
+    
+    init(id: Int,
+         imageStr: String,
+         title: String,
+         description: String) {
+        self.id = id
+        self.imageStr = imageStr
+        self.title = title
+        self.description = description
+    }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
         
         self.id = try container.decodeIfPresent(Int.self, forKey: .id, fallback: -1)
-        self.image = try container.decodeIfPresent(String.self, forKey: .image, fallback: "")
+        self.imageStr = try container.decodeIfPresent(String.self, forKey: .imageStr, fallback: "")
         self.title = try container.decodeIfPresent(String.self, forKey: .title, fallback: "")
         self.description = try container.decodeIfPresent(String.self, forKey: .description, fallback: "")
     }
@@ -33,8 +43,12 @@ struct Asset: Model {
         var container = encoder.container(keyedBy: Keys.self)
         
         try container.encode(self.id, forKey: .id)
-        try container.encode(self.image, forKey: .image)
+        try container.encode(self.imageStr, forKey: .imageStr)
         try container.encode(self.title, forKey: .title)
         try container.encode(self.description, forKey: .description)
     }
+}
+
+extension AssetModel: Identifiable {
+    
 }

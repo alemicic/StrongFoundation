@@ -11,13 +11,13 @@ enum AssetsEndpoint: APIEndpoint {
     case getAssets
     
     var baseURL: URL {
-        return URL(string: "https://example.com/api")!
+        return URL(string: "https://run.mocky.io/v3")!
     }
     
     var path: String {
         switch self {
             case .getAssets:
-                return "/assets"
+                return "/be5fea61-75b5-413d-afd6-cfef625b4760"
         }
     }
     

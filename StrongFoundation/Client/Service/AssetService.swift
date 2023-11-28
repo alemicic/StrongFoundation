@@ -9,13 +9,13 @@ import Foundation
 import Combine
 
 protocol AssetServiceProtocol {
-    func getAssets() -> AnyPublisher<[Asset], Error>
+    func getAssets() -> AnyPublisher<[AssetModel], Error>
 }
 
 class AssetService: AssetServiceProtocol {
     let client = Client<AssetsEndpoint>()
     
-    func getAssets() -> AnyPublisher<[Asset], Error> {
+    func getAssets() -> AnyPublisher<[AssetModel], Error> {
         return client.request(.getAssets)
     }
 }
