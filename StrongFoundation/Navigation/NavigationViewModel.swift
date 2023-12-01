@@ -32,6 +32,7 @@ class NavigationVM: ObservableObject {
     var subscription = Set<AnyCancellable>()
     
     @Published var homeNavigationPath: [ScreenNavigation] = []
+    @Published var listNavigationPath: [ScreenNavigation] = []
     @Published var channelsNavigationPath: [ScreenNavigation] = []
     @Published var settingsNavigationPath: [ScreenNavigation] = []
     
@@ -49,6 +50,10 @@ class NavigationVM: ObservableObject {
       
     func popHomeToRoot() {
         homeNavigationPath = []
+    }
+    
+    func popListToRoot() {
+        channelsNavigationPath = []
     }
     
     func popChannelsToRoot() {
@@ -79,6 +84,14 @@ extension NavigationVM {
             .sink(receiveValue: openAssetDetailsOnHome)
             .store(in: &subscription)
         return vm
+    }
+    
+    func makeListVM() -> ListVM {
+        ListVM()
+    }
+    
+    func makeChannelVM() -> ChannelsVM {
+        ChannelsVM()
     }
     
     func makeAssetDetailsVM(assetModel: AssetModel) -> AssetDetailVM {

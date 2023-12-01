@@ -34,6 +34,12 @@
 		A8FA39C62B13CF15008609F9 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C52B13CF15008609F9 /* Client.swift */; };
 		A8FA39C92B13E19C008609F9 /* AssetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C82B13E19C008609F9 /* AssetService.swift */; };
 		A8FA39CD2B13E3FF008609F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39CC2B13E3FF008609F9 /* Extensions.swift */; };
+		A8FA39D52B18CB04008609F9 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39D42B18CB04008609F9 /* ListView.swift */; };
+		A8FA39D72B18D490008609F9 /* ListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39D62B18D490008609F9 /* ListVM.swift */; };
+		A8FA39DA2B19E7B9008609F9 /* ChannelsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39D92B19E7B9008609F9 /* ChannelsScreen.swift */; };
+		A8FA39DD2B19E94B008609F9 /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39DC2B19E94B008609F9 /* ChannelItemView.swift */; };
+		A8FA39DF2B19EEA8008609F9 /* ChannelsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39DE2B19EEA8008609F9 /* ChannelsVM.swift */; };
+		A8FA39E12B19F07D008609F9 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39E02B19F07D008609F9 /* ChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +90,12 @@
 		A8FA39C52B13CF15008609F9 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A8FA39C82B13E19C008609F9 /* AssetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetService.swift; sourceTree = "<group>"; };
 		A8FA39CC2B13E3FF008609F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A8FA39D42B18CB04008609F9 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		A8FA39D62B18D490008609F9 /* ListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVM.swift; sourceTree = "<group>"; };
+		A8FA39D92B19E7B9008609F9 /* ChannelsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsScreen.swift; sourceTree = "<group>"; };
+		A8FA39DC2B19E94B008609F9 /* ChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemView.swift; sourceTree = "<group>"; };
+		A8FA39DE2B19EEA8008609F9 /* ChannelsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVM.swift; sourceTree = "<group>"; };
+		A8FA39E02B19F07D008609F9 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +163,6 @@
 		A89562E02B00C99F004C015F /* StrongFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				A8FA39CF2B167778008609F9 /* Mapper */,
 				A8FA39BE2B13C9D9008609F9 /* Client */,
 				A8FA39BA2B13773A008609F9 /* Screens */,
 				A89563182B00DE67004C015F /* UIModels */,
@@ -263,6 +274,8 @@
 		A8FA39BA2B13773A008609F9 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				A8FA39D82B19E7A9008609F9 /* Channels */,
+				A8FA39D32B18CAEC008609F9 /* ListScreen */,
 				A89563132B00DDCB004C015F /* Home */,
 				A81901B22B0D378000230A50 /* AssetDetail */,
 				A8FA39B92B1376BA008609F9 /* Root */,
@@ -295,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				A89563192B00DEA6004C015F /* AssetModel.swift */,
+				A8FA39E02B19F07D008609F9 /* ChannelModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,11 +330,31 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		A8FA39CF2B167778008609F9 /* Mapper */ = {
+		A8FA39D32B18CAEC008609F9 /* ListScreen */ = {
 			isa = PBXGroup;
 			children = (
+				A8FA39D42B18CB04008609F9 /* ListView.swift */,
+				A8FA39D62B18D490008609F9 /* ListVM.swift */,
 			);
-			path = Mapper;
+			path = ListScreen;
+			sourceTree = "<group>";
+		};
+		A8FA39D82B19E7A9008609F9 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				A8FA39DB2B19E93C008609F9 /* Components */,
+				A8FA39D92B19E7B9008609F9 /* ChannelsScreen.swift */,
+				A8FA39DE2B19EEA8008609F9 /* ChannelsVM.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		A8FA39DB2B19E93C008609F9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A8FA39DC2B19E94B008609F9 /* ChannelItemView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,13 +491,17 @@
 				A8FA39C42B13CB53008609F9 /* AssetsEndpoint.swift in Sources */,
 				A895632A2B015150004C015F /* EdgeInsets+Extensions.swift in Sources */,
 				A8FA39C22B13CA56008609F9 /* APIEndpoint.swift in Sources */,
+				A8FA39DA2B19E7B9008609F9 /* ChannelsScreen.swift in Sources */,
 				A8FA39C92B13E19C008609F9 /* AssetService.swift in Sources */,
 				A89562EB2B00C9A1004C015F /* Persistence.swift in Sources */,
+				A8FA39D72B18D490008609F9 /* ListVM.swift in Sources */,
 				A81901B42B0D379800230A50 /* AssetDetailVM.swift in Sources */,
+				A8FA39D52B18CB04008609F9 /* ListView.swift in Sources */,
 				A81901AE2B0CF55100230A50 /* AssetDetailView.swift in Sources */,
 				A89563282B014F30004C015F /* StringConstants.swift in Sources */,
 				A89562EE2B00C9A1004C015F /* StrongFoundation.xcdatamodeld in Sources */,
 				A895631A2B00DEA6004C015F /* AssetModel.swift in Sources */,
+				A8FA39DF2B19EEA8008609F9 /* ChannelsVM.swift in Sources */,
 				A81901B12B0CF6D200230A50 /* NavigationViewModel.swift in Sources */,
 				A89562E42B00C99F004C015F /* HomeScreen.swift in Sources */,
 				A89563112B00CA86004C015F /* HomeScreenViewModel.swift in Sources */,
@@ -473,8 +511,10 @@
 				A89563262B014C78004C015F /* Identifier.swift in Sources */,
 				A89563202B00EF20004C015F /* TitleDescriptionView.swift in Sources */,
 				A895631C2B00EB59004C015F /* AssetListItemView.swift in Sources */,
+				A8FA39DD2B19E94B008609F9 /* ChannelItemView.swift in Sources */,
 				A8FA39C62B13CF15008609F9 /* Client.swift in Sources */,
 				A89563232B00F1FD004C015F /* Font+Extensions.swift in Sources */,
+				A8FA39E12B19F07D008609F9 /* ChannelModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

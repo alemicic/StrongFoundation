@@ -65,59 +65,6 @@ struct HomeScreen: View {
                     }
                 }
             }
-            Section {
-                Text("Prva lista")
-            }
-            .padding(.horizontal16)
-            ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(vm.items) { item in
-                        AssetHorizontalItemView(title: item.title,
-                                                image: item.imageStr)
-                    }
-                    .background(.white)
-                    .listStyle(.insetGrouped)
-                }
-            }
-            .background(.thinMaterial)
-            .padding(.horizontal16)
-            .scrollIndicators(.hidden)
-            
-            Section {
-                Text("Druga lista")
-            }
-            .padding(.horizontal16)
-            ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(vm.items) { item in
-                        AssetHorizontalItemView(title: item.title,
-                                                image: item.imageStr)
-                    }
-                    .background(.white)
-                    .listStyle(.insetGrouped)
-                }
-            }
-            .background(.thinMaterial)
-            .padding(.horizontal16)
-            .scrollIndicators(.hidden)
-            
-            Section {
-                Text("Treca lista")
-            }
-            .padding(.horizontal16)
-            ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(vm.items) { item in
-                        AssetHorizontalItemView(title: item.title,
-                                                image: item.imageStr)
-                    }
-                    .background(.white)
-                    .listStyle(.insetGrouped)
-                }
-            }
-            .background(.thinMaterial)
-            .padding(.horizontal16)
-            .scrollIndicators(.hidden)
         }
     }
 

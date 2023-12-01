@@ -17,7 +17,7 @@ import SwiftUI
 
 struct RootTabView: View {
     enum Tab {
-        case home, channels, settings
+        case home, list, channels, settings
     }
     
     @State private var selectedTab: Tab = .home
@@ -46,7 +46,25 @@ struct RootTabView: View {
             }
             .tag(Tab.home)
             
-            Text("Tab 2")
+            NavigationStack(path: $navigationVM.listNavigationPath) {
+                ListView(vm: navigationVM.makeListVM())
+            }
+            .tabItem {
+                Label("List",
+                      systemImage: "list.bullet.clipboard.fill")
+            }
+            .tag(Tab.list)
+            
+            NavigationStack(path: $navigationVM.channelsNavigationPath) {
+                ChannelsScreen(vm: navigationVM.makeChannelVM())
+            }
+            .tabItem {
+                Label("Channels",
+                      systemImage: "tv.fill")
+            }
+            .tag(Tab.channels)
+            
+            Text("Settings")
                 .tabItem {
                     Label("Settings",
                           systemImage: "gearshape")
@@ -67,6 +85,13 @@ struct RootTabView: View {
                         } else {
                             //Pop to root view by clearing the stack
                             navigationVM.popHomeToRoot()
+                        }
+                    case .list:
+                        if navigationVM.homeNavigationPath.isEmpty {
+                            //User already on home view, scroll to top
+                        } else {
+                            //Pop to root view by clearing the stack
+                            navigationVM.popListToRoot()
                         }
                     case .channels:
                         if navigationVM.channelsNavigationPath.isEmpty {
