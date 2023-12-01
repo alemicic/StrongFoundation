@@ -15,7 +15,7 @@ struct ChannelsScreen: View {
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns) {
-                ForEach($vm.channels) { _ in
+                ForEach(vm.filteredChannels) { _ in
                     ChannelItemView(image: "lotr64")
                 }
             }

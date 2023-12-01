@@ -10,4 +10,5 @@ import Foundation
 struct ChannelModel: Identifiable {
     public let id: Int
     public let imageStr: String
+    public let title: String
 }
