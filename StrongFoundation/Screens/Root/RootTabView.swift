@@ -64,12 +64,26 @@ struct RootTabView: View {
             }
             .tag(Tab.channels)
             
-            Text("Settings")
-                .tabItem {
-                    Label("Settings",
-                          systemImage: "gearshape")
-                }
-                .tag(Tab.settings)
+            NavigationStack(path: $navigationVM.settingsNavigationPath) {
+                SettingsScreen(vm: navigationVM.makeSettingsVM())
+                    .navigationDestination(for: SettingsScreenNavigation.self) { screen in
+                        switch screen {
+                            case .account(vm: let vm):
+                                SettingsAccountView(vm: vm)
+                            case .language(vm: let vm):
+                                SettingsLanguageView(vm: vm)
+                            case .videoQuality(vm: let vm):
+                                SettingsVideoQualityView(vm: vm)
+                            case .changePin(vm: let vm):
+                                SettingsChangePinView(vm: vm)
+                        }
+                    }
+            }
+            .tabItem {
+                Label("Settings",
+                      systemImage: "gearshape")
+            }
+            .tag(Tab.settings)
         }
     }
     

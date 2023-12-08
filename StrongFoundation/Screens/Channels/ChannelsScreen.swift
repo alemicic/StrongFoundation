@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChannelsScreen: View {
     @StateObject var vm: ChannelsVM
-    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {

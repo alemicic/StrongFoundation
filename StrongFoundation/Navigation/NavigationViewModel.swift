@@ -26,6 +26,14 @@ extension Navigable {
 
 enum ScreenNavigation: Hashable {
     case assetDetail(vm: AssetDetailVM)
+//    case settingsDetail(type: SettingsDetailType)
+}
+
+enum SettingsScreenNavigation: Hashable {
+    case account(vm: SettingsAccountVM)
+    case language(vm: SettingsLanguageVM)
+    case videoQuality(vm: SettingsVideoQualityVM)
+    case changePin(vm: SettingsChangePinVM)
 }
 
 class NavigationVM: ObservableObject {
@@ -34,11 +42,11 @@ class NavigationVM: ObservableObject {
     @Published var homeNavigationPath: [ScreenNavigation] = []
     @Published var listNavigationPath: [ScreenNavigation] = []
     @Published var channelsNavigationPath: [ScreenNavigation] = []
-    @Published var settingsNavigationPath: [ScreenNavigation] = []
+    @Published var settingsNavigationPath: [SettingsScreenNavigation] = []
     
     init(homeNavigationPath: [ScreenNavigation] = [],
          channelsNavigationPath: [ScreenNavigation] = [],
-         settingsNavigationPath: [ScreenNavigation] = []) {
+         settingsNavigationPath: [SettingsScreenNavigation] = []) {
         self.homeNavigationPath = homeNavigationPath
         self.channelsNavigationPath = channelsNavigationPath
         self.settingsNavigationPath = settingsNavigationPath
@@ -47,7 +55,20 @@ class NavigationVM: ObservableObject {
     func openAssetDetailsOnHome(assetModel: AssetModel) {
         homeNavigationPath.append(.assetDetail(vm: makeAssetDetailsVM(assetModel: assetModel)))
     }
-      
+    
+    func openSettingsDetailsOnSettings(type: SettingsDetailType) {
+        switch type {
+            case .account:
+                settingsNavigationPath.append(.account(vm: SettingsAccountVM(accountName: "nesto")))
+            case .language:
+                settingsNavigationPath.append(.language(vm: SettingsLanguageVM(languages: [])))
+            case .videoQuality:
+                settingsNavigationPath.append(.videoQuality(vm: SettingsVideoQualityVM()))
+            case .changePin:
+                settingsNavigationPath.append(.changePin(vm: SettingsChangePinVM()))
+        }
+    }
+    
     func popHomeToRoot() {
         homeNavigationPath = []
     }
@@ -92,6 +113,10 @@ extension NavigationVM {
     
     func makeChannelVM() -> ChannelsVM {
         ChannelsVM()
+    }
+    
+    func makeSettingsVM() -> SettingsVM {
+        SettingsVM()
     }
     
     func makeAssetDetailsVM(assetModel: AssetModel) -> AssetDetailVM {

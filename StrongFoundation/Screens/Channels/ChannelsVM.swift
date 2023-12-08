@@ -28,7 +28,8 @@ class ChannelsVM: ObservableObject {
         var channels = [ChannelModel]()
         for i in 0...100 {
 
-            var title = "Channel title"
+            var title = "Lotr"
+            var imageStr = "lotr64"
             if i < 10 {
                 title = "The Fellowship of the Ring"
             } else if i < 20 {
@@ -37,7 +38,7 @@ class ChannelsVM: ObservableObject {
                 title = "The Return of the King"
             }
             
-            channels.append(ChannelModel(id: i, imageStr: "lotr64", title: title))
+            channels.append(ChannelModel(id: i, imageStr: imageStr, title: title))
         }
         return channels
     }

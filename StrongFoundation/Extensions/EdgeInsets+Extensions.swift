@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 
 extension EdgeInsets {
+    static var padding0: EdgeInsets {
+        EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+    }
     static var padding4: EdgeInsets {
         EdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
     }
