@@ -15,6 +15,9 @@ struct SettingsScreen: View {
             SettingsItemView(image: item.image, title: item.title)
                 .listRowInsets(.padding0)
                 .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in return 0 }
+                .onTapGesture {
+                    vm.didTapSettingsDetails(settingsItem: item)
+                }
         }
         .listStyle(.plain)
         .padding(.horizontal16)

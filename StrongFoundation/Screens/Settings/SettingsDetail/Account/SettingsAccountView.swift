@@ -12,10 +12,13 @@ struct SettingsAccountView: View {
     
     var body: some View {
         Text(vm.accountName)
+            .font(.textMedium20)
         Text(StringConstants.settingsAccountDescription)
+            .font(.textLight16)
         Button(action: vm.logout) {
             Text(StringConstants.settingsAccountSignout)
         }
+        Spacer()
     }
 }
 

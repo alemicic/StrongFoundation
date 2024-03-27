@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 
-class HomeScreenViewModel: ObservableObject {
+class HomeScreenViewModel: ObservableObject, Completeable {
     // MARK: Bindings
     @Published var items: [AssetModel] {
         didSet {

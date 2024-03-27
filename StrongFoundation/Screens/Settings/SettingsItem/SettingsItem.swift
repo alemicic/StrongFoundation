@@ -8,6 +8,7 @@
 import Foundation
 
 struct SettingsItem {
+    var type: SettingsDetailType
     var image: String
     var title: String
 }

@@ -15,37 +15,41 @@ struct ListView: View {
             Text("Prva lista")
         }
         .padding(.horizontal16)
-        ScrollView(.horizontal) {
-            LazyHStack {
-                ForEach(vm.items1) { item in
-                    AssetHorizontalItemView(title: item.title,
-                                            image: item.imageStr)
+        ScrollView() {
+//            ForEach(0..<500) {_ in
+                ScrollView(.horizontal) {
+                    LazyHStack {
+                        ForEach(vm.items1) { item in
+                            AssetHorizontalItemView(title: item.title,
+                                                    image: item.imageStr)
+                        }
+                        .background(.white)
+                        .listStyle(.insetGrouped)
+                    }
                 }
-                .background(.white)
-                .listStyle(.insetGrouped)
-            }
-        }
-        .background(.thinMaterial)
-        .padding(.horizontal16)
-        .scrollIndicators(.hidden)
-        
-        Section {
-            Text("Druga lista")
-        }
-        .padding(.horizontal16)
-        ScrollView(.horizontal) {
-            LazyHStack {
-                ForEach(vm.items2) { item in
-                    AssetHorizontalItemView(title: item.title,
-                                            image: item.imageStr)
+                .background(.thinMaterial)
+                .padding(.horizontal16)
+                .scrollIndicators(.hidden)
+                
+                Section {
+                    Text("Druga lista")
                 }
-                .background(.white)
-                .listStyle(.insetGrouped)
-            }
+                .padding(.horizontal16)
+                ScrollView(.horizontal) {
+                    LazyHStack {
+                        ForEach(vm.items2) { item in
+                            AssetHorizontalItemView(title: item.title,
+                                                    image: item.imageStr)
+                        }
+                        .background(.white)
+                        .listStyle(.insetGrouped)
+                    }
+                }
+                .background(.thinMaterial)
+                .padding(.horizontal16)
+                .scrollIndicators(.hidden)
+//            }
         }
-        .background(.thinMaterial)
-        .padding(.horizontal16)
-        .scrollIndicators(.hidden)
     }
 }
 

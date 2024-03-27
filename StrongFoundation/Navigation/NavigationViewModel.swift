@@ -10,7 +10,8 @@ import SwiftUI
 import Combine
 
 protocol Completeable {
-    var didComplete: PassthroughSubject<Self, Never> { get }
+    associatedtype T
+    var didComplete: PassthroughSubject<T, Never> { get }
 }
 
 protocol Navigable: Identifiable, Hashable {}
@@ -56,16 +57,28 @@ class NavigationVM: ObservableObject {
         homeNavigationPath.append(.assetDetail(vm: makeAssetDetailsVM(assetModel: assetModel)))
     }
     
-    func openSettingsDetailsOnSettings(type: SettingsDetailType) {
-        switch type {
+    func openSettingsDetailsOnSettings(settingsItem: SettingsItem) {
+        switch settingsItem.type {
             case .account:
-                settingsNavigationPath.append(.account(vm: SettingsAccountVM(accountName: "nesto")))
-            case .language:
-                settingsNavigationPath.append(.language(vm: SettingsLanguageVM(languages: [])))
-            case .videoQuality:
-                settingsNavigationPath.append(.videoQuality(vm: SettingsVideoQualityVM()))
+                settingsNavigationPath.append(.account(vm: SettingsAccountVM(accountName: "Pera")))
             case .changePin:
                 settingsNavigationPath.append(.changePin(vm: SettingsChangePinVM()))
+            case .language:
+                let list = [
+                    LanguageModel(name: "English", isSelected: false),
+                    LanguageModel(name: "Serbian", isSelected: true),
+                    LanguageModel(name: "Hungarian", isSelected: false),
+                    LanguageModel(name: "Romanian", isSelected: false)
+                ]
+                settingsNavigationPath.append(.language(vm: SettingsLanguageVM(languages: list)))
+            case .videoQuality:
+                settingsNavigationPath.append(
+                    .videoQuality(
+                        vm: SettingsVideoQualityVM(
+                            isWifiOn: true,
+                            selectedWifi: "true?",
+                            isCellularOn: false,
+                            selectedCellular: "false?")))
         }
     }
     
@@ -116,7 +129,11 @@ extension NavigationVM {
     }
     
     func makeSettingsVM() -> SettingsVM {
-        SettingsVM()
+        let vm = SettingsVM()
+        vm.didComplete
+            .sink(receiveValue: openSettingsDetailsOnSettings)
+            .store(in: &subscription)
+        return vm
     }
     
     func makeAssetDetailsVM(assetModel: AssetModel) -> AssetDetailVM {

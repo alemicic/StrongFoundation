@@ -38,6 +38,9 @@
 		A89563282B014F30004C015F /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89563272B014F30004C015F /* StringConstants.swift */; };
 		A895632A2B015150004C015F /* EdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89563292B015150004C015F /* EdgeInsets+Extensions.swift */; };
 		A895632C2B02C3F6004C015F /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A895632B2B02C3F6004C015F /* RootTabView.swift */; };
+		A8F99C0D2BAEBDB400D8306A /* TextPinModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C0C2BAEBDB400D8306A /* TextPinModifier.swift */; };
+		A8F99C0F2BAEE0EA00D8306A /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C0E2BAEE0EA00D8306A /* CustomSecureField.swift */; };
+		A8F99C112BB1D68D00D8306A /* TitleCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F99C102BB1D68D00D8306A /* TitleCheckView.swift */; };
 		A8FA39BD2B1378EF008609F9 /* AssetHorizontalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39BC2B1378EF008609F9 /* AssetHorizontalItemView.swift */; };
 		A8FA39C22B13CA56008609F9 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C12B13CA56008609F9 /* APIEndpoint.swift */; };
 		A8FA39C42B13CB53008609F9 /* AssetsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA39C32B13CB53008609F9 /* AssetsEndpoint.swift */; };
@@ -108,6 +111,9 @@
 		A89563272B014F30004C015F /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		A89563292B015150004C015F /* EdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		A895632B2B02C3F6004C015F /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		A8F99C0C2BAEBDB400D8306A /* TextPinModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPinModifier.swift; sourceTree = "<group>"; };
+		A8F99C0E2BAEE0EA00D8306A /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		A8F99C102BB1D68D00D8306A /* TitleCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCheckView.swift; sourceTree = "<group>"; };
 		A8FA39BC2B1378EF008609F9 /* AssetHorizontalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHorizontalItemView.swift; sourceTree = "<group>"; };
 		A8FA39C12B13CA56008609F9 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		A8FA39C32B13CB53008609F9 /* AssetsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsEndpoint.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		A880135E2B21782300E740B9 /* SettingsDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A8F99C0B2BAEBD7700D8306A /* ViewModifiers */,
 				A88013762B223C1100E740B9 /* ChangePin */,
 				A88013752B223C0900E740B9 /* VideoQuality */,
 				A88013742B223C0300E740B9 /* Language */,
@@ -331,10 +338,20 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		A8F99C0B2BAEBD7700D8306A /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A8F99C0C2BAEBDB400D8306A /* TextPinModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		A8FA39B82B1376A3008609F9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				A895631F2B00EF20004C015F /* TitleDescriptionView.swift */,
+				A8F99C0E2BAEE0EA00D8306A /* CustomSecureField.swift */,
+				A8F99C102BB1D68D00D8306A /* TitleCheckView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,6 +610,7 @@
 				A8FA39DA2B19E7B9008609F9 /* ChannelsScreen.swift in Sources */,
 				A8FA39C92B13E19C008609F9 /* AssetService.swift in Sources */,
 				A8FA39E82B1A29FA008609F9 /* SettingsItemView.swift in Sources */,
+				A8F99C0F2BAEE0EA00D8306A /* CustomSecureField.swift in Sources */,
 				A89562EB2B00C9A1004C015F /* Persistence.swift in Sources */,
 				A8FA39D72B18D490008609F9 /* ListVM.swift in Sources */,
 				A81901B42B0D379800230A50 /* AssetDetailVM.swift in Sources */,
@@ -600,8 +618,10 @@
 				A88013642B217CA000E740B9 /* SettingsAccountVM.swift in Sources */,
 				A88013702B21F78200E740B9 /* SettingsLanguageView.swift in Sources */,
 				A88013782B224F4C00E740B9 /* SettingsChangePinView.swift in Sources */,
+				A8F99C0D2BAEBDB400D8306A /* TextPinModifier.swift in Sources */,
 				A8FA39EA2B1A2A2B008609F9 /* SettingsVM.swift in Sources */,
 				A81901AE2B0CF55100230A50 /* AssetDetailView.swift in Sources */,
+				A8F99C112BB1D68D00D8306A /* TitleCheckView.swift in Sources */,
 				A89563282B014F30004C015F /* StringConstants.swift in Sources */,
 				A880135D2B20A96D00E740B9 /* SettingsItem.swift in Sources */,
 				A88013622B21784800E740B9 /* SettingsDetailVM.swift in Sources */,
@@ -788,6 +808,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"StrongFoundation/Preview Content\"";
@@ -807,6 +828,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = StrongFoundation.StrongFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

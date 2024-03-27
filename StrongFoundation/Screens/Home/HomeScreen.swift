@@ -21,12 +21,12 @@ struct HomeScreen: View {
 //    private var items: FetchedResults<Item>
     
     @StateObject var vm: HomeScreenViewModel
-    @StateObject var navigationVM: NavigationVM
+//    @StateObject var navigationVM: NavigationVM
     
     init(vm: HomeScreenViewModel,
          navigationVM: StateObject<NavigationVM>) {
         _vm = StateObject(wrappedValue: vm)
-        _navigationVM = navigationVM
+//        _navigationVM = navigationVM
     }
 
     var body: some View {
